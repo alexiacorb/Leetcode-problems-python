@@ -1,0 +1,49 @@
+
+class Solution(object):
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+
+        #function for binary_search pair of the element 
+        def binary_search(element, st, dr, array):
+            while st <= dr:
+                mid = (st + dr) // 2
+                if array[mid] < element:
+                    st = mid + 1
+                elif array[mid] > element:
+                    dr = mid - 1
+                else:
+                    return mid
+            return -1
+
+
+        # Creating the dictionary to hold the indexes of each number
+        dictionary = {}
+        for index, value in enumerate(nums):
+            if value not in dictionary:
+                dictionary[value] = [index]
+            else:
+                dictionary[value].append(index)
+
+
+        # sorting array for binary search
+        sorted_nums = sorted(nums)
+        n=len(sorted_nums)
+
+        for index in range(n):
+            complement = target - sorted_nums[index]
+            complement_index = binary_search(complement, 0, n-1, sorted_nums)
+            
+            if complement_index != -1:
+                # check if the complement found is not the same element
+                if complement_index != index or len(dictionary[sorted_nums[index]]) > 1:
+                    # get the original indices of the numbers
+                    first_index = dictionary[sorted_nums[index]].pop(0)
+                    last_index = dictionary[complement].pop(0)
+                    
+                    # return index of the two elements 
+                    return [first_index, last_index]
+        
