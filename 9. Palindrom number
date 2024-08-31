@@ -1,0 +1,23 @@
+class Solution(object):
+    def ogl(self,n):
+        rez=0
+        while(n!=0):
+            rez=rez*10+n%10
+            n=n//10
+        return rez
+    def isPalindrome(self, x):
+        """
+        :type x: int
+        :rtype: bool
+        """
+        
+        if x<0:
+            return False 
+        else:
+            copie=x
+            oglindit=self.ogl(x)
+ 
+            if copie == oglindit:
+                return True
+            else:
+                return False
