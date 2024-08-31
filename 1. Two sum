@@ -41,6 +41,7 @@ class Solution(object):
                 # check if the complement found is not the same element
                 if complement_index != index or len(dictionary[sorted_nums[index]]) > 1:
                     # get the original indices of the numbers
+                    # in case they are duplicated, we extract different positions, pop extracts the position and removes the element
                     first_index = dictionary[sorted_nums[index]].pop(0)
                     last_index = dictionary[complement].pop(0)
                     
