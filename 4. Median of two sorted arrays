@@ -1,0 +1,36 @@
+class Solution(object):
+    def findMedianSortedArrays(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: float
+        """
+        rez_array=[]
+        i=0
+        j=0
+    
+        n=len(nums1)
+        m=len(nums2)
+
+        #interclass the two vectors
+        while i<n and j<m :
+            if nums1[i]<nums2[j]:
+                rez_array.append(nums1[i])
+                i=i+1
+            
+            else:
+                rez_array.append(nums2[j])
+                j=j+1
+    
+        while i<n :
+            rez_array.append(nums1[i])
+            i=i+1
+        while j<m :
+            rez_array.append(nums2[j])
+            j=j+1
+        
+        index=n+m;
+        if index%2==0:
+            return ((rez_array[index//2-1]+rez_array[index//2])/2.0)
+        else:
+            return rez_array[index//2]
