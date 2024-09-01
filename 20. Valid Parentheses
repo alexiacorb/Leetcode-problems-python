@@ -4,7 +4,8 @@ class Solution(object):
         :type s: str
         :rtype: bool
         """
-        
+
+        # use a stack, if the stack is empty at the end it means they were in order
         stack=[]
         check_breackets={"}":"{" , "]":"[" , ")":"("}
 
@@ -13,6 +14,8 @@ class Solution(object):
                 stack.append(char)
             elif char in "]})":
                 if stack and stack[-1]==check_breackets[char]:
+                    #stack checks if the stack is not empty  
+                    #stack[-1] -»means the last position in the stack
                     stack.pop()
                 else:
                     return False 
